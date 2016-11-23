@@ -39,9 +39,13 @@ output_path=
 
 [projectfiles]
 FILE_0=main.agc;-1
+FILE_1=HappyJugs.agc;-1
+FILE_2=Cross-Country.agc;-1
 
 [files]
-FILE_NAME_0=1;main.agc;2924;0
+FILE_NAME_0=0;main.agc;608;0
+FILE_NAME_1=0;HappyJugs.agc;736;1
+FILE_NAME_2=1;Cross-Country.agc;392;2
 
 [project]
 description=
