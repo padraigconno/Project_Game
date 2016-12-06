@@ -41,7 +41,6 @@ function CreateStrip ( iImage as integer, fX as float, fY as float, iMode as int
         built = 0
         iSprite = -1
         
-
         
 
 // Make Terrain  
