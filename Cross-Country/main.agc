@@ -17,6 +17,10 @@ SetSyncRate( 30, 0 ) // 30fps instead of 60 to save battery
 SetScreenResolution(420, 720)
 SetVirtualResolution ( 1334, 750 )
 
+flag = CreateSprite(LoadImage("flag.png"))
+SetSpritePosition(1000, 50)
+SetSpriteSize(50,50)
+
 firstBeaver = CreateSprite(LoadImage("beaver1.png"))
 SetSpritePosition(firstBeaver, 750, 50)
 SetSpriteSize(firstBeaver, 45, 30)
@@ -52,21 +56,57 @@ LoadMusicOGG ( 1, "FamiliarRoads.ogg" )
 PlayMusicOGG ( 1, 1 )
 
 
+	function Choose()
+		if(GetPointerPressed() = 
+	endfunction 
+
 function CreateBackground( )
     LoadImage ( 1, "background.jpg" )
 	CreateSprite ( 1, 1 )
 	FixSpriteToScreen ( 1, 1 )
 endfunction
 
-
-	hill = LoadImage("hill.png")
-
-	flat = LoadImage("rocks.png")
+	function Collision()
+	//when beaver hits the hill
+	 for moveY = 50 to 80
+		  
+	 for moveX = 0 to 250
+	if(GetSpriteCollision(firstBeaver , hill) = 1)
+	// set beaver over the hill
 	
+	//temp
+	SetSpritePosition(firstBeaver, moveX, moveY)
+	endif
+	
+	if(GetSpriteCollision(secondBeaver , hill) = 1)
+	
+	SetSpritePosition(secondBeaver, moveX, moveY)
+	endif
+	
+	if(GetSpriteCollision(thirdBeaver , hill) = 1)
+	
+	SetSpritePosition(thirdBeaver, moveX, moveY)
+	endif	
+	
+	endfunction
+	
+	
+	function win()
+		//find out who won
+		if(choosen = GetSpriteHit(1000, 50))
+		 win = CreateSprite (LoadImage ("temp/win.jpeg") )
+		//SetSpriteSize(win, 100, 100)
+		SetSpritePosition( win, 300, 200)
+        //Print(str(GetPointerX ( )))
+        //Print(str(GetPointerY ( )))
+    else 
+		initialTime = initialTime + 10
+    endif
+
+	endfunction
 
 do
     
-
-    Print( ScreenFPS() )
-    Sync()
+	Print(Timer)
+	Sync()
 loop
