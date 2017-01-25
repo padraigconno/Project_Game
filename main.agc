@@ -153,29 +153,29 @@ rem This is where I load the level
 function LoadLevel ( level as integer )
 	 SetVirtualResolution ( 1334, 750 )
         // load background
-        g_Level.background = CreateSprite ( LoadImage ( "temp/water-back.jpg" ) )
+        g_Level.background = CreateSprite ( LoadImage ( "game1/water-back.jpg" ) )
 		SetSpriteSize(g_Level.background, 1334, 750)
 		SetSpritePosition ( g_Level.background, 0, 0 )
 		
         // load foreground
-        g_Level.foreground = CreateSprite ( LoadImage ( "temp/boats.png" ) )
+        g_Level.foreground = CreateSprite ( LoadImage ( "game1/boats.png" ) )
         SetSpriteSize(g_Level.foreground, 500, 500)
         SetSpritePosition ( g_Level.foreground, 380, 20)
 		
-      option1 = CreateSprite (LoadImage ("temp/case1.png") )
+      option1 = CreateSprite (LoadImage ("game1/case1.png") )
       //SetSpriteSize(option1, 100, 100)
       SetSpritePosition( option1, 380, 540)
       
-      option2 = CreateSprite (LoadImage ("temp/case2.png") )
+      option2 = CreateSprite (LoadImage ("game1/case2.png") )
       //SetSpriteSize(option1, 100, 100)
       SetSpritePosition( option2, 380, 590)
       
       
-      option3 = CreateSprite (LoadImage ("temp/case3.png") )
+      option3 = CreateSprite (LoadImage ("game1/case3.png") )
       //SetSpriteSize(option1, 100, 100)
       SetSpritePosition( option3, 380, 640)
       
-      option4 = CreateSprite (LoadImage ("temp/case4.png") )
+      option4 = CreateSprite (LoadImage ("game1/case4.png") )
       //SetSpriteSize(option1, 100, 100)
       SetSpritePosition( option4, 380, 690)
       
@@ -188,7 +188,7 @@ do
 
 
     if ( GetSpriteHit ( GetPointerX ( ), GetPointerY ( ) ) = option3 AND GetPointerPressed ( ) = 1 )
-        win = CreateSprite (LoadImage ("temp/win.jpeg") )
+        win = CreateSprite (LoadImage ("game1/win.jpeg") )
 		//SetSpriteSize(win, 100, 100)
 		SetSpritePosition( win, 300, 200)
         //Print(str(GetPointerX ( )))

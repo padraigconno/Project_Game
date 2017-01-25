@@ -16,6 +16,7 @@ play_app_id=
 sdk_version=0
 version_name=
 version_number=0
+firebase_config_path=
 
 [ipa_settings]
 app_icon_path=
@@ -31,6 +32,7 @@ splash_2048_path=
 splash_960_path=
 uses_ads=0
 version_number=
+firebase_config_path=
 
 [html5_settings]
 commands_used=0
@@ -43,9 +45,6 @@ FILE_1=HappyJugs.agc;-1
 FILE_2=Cross-Country.agc;-1
 
 [files]
-FILE_NAME_0=0;main.agc;608;0
-FILE_NAME_1=0;HappyJugs.agc;736;1
-FILE_NAME_2=1;Cross-Country.agc;392;2
 
 [project]
 description=
