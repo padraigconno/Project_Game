@@ -1,62 +1,53 @@
 // Project  Name: Happy Jugs
 // Created By: Padraig Connolly
 
+ SetVirtualResolution ( 1334, 750 )
+   
+   
+   // background image
+    background = CreateSprite ( LoadImage ( "background.png" ) )
+    SetSpriteSize(background, 1334, 750)
 
-SetScreenResolution(420, 720)
-SetVirtualResolution ( 1334, 750 )
 
-background_3 = CreateSprite(LoadImage(1, "back.png"))
-SetSpriteSize(background_3, 1334, 750)
-SetSpritePosition (background_3, 0, 0 )
+	jug1 = CreateSprite (LoadImage ("tempJug_burned.png") )
+    SetSpriteSize(jug1, 200, 200)
+    SetSpritePosition( jug1, 325, 340)
 
-/*
-tap = CreateSprite(LoadImage(2, "tap.png"))
-SetSpriteSize(tap, 218, 232)
-SetSpritePosition(tap, 0, 250)
+	jug2 = CreateSprite (LoadImage ("tempJug_burned.png") )
+    SetSpriteSize(jug2, 100, 100)
+    SetSpritePosition( jug2, 525, 540)
+      
+do
+	/*
+    Print ( "Touch or click the screen to move the" )
+    Print ( "sprite to that location" )
 */
 
-jug1 = CreateSprite(LoadImage(3, "tempJug.png"))
-SetSpritePosition(jug1, 165, 150)
-
-
-jug2 = CreateSprite(LoadImage(4, "tempJug2.png"))
-SetSpritePosition(jug2, 105, 100)
-
-/*
-drop = CreateSprite(LoadImage (5, "sink.png"))
-SetSpritePosition(drop, 200, 200)
-SetSpritePosition(drop, 100, 100)
-*/
-
- LoadMusicOGG ( 1, "FamiliarRoads.ogg" )
- PlayMusicOGG ( 1, 1 )
- 
- if getPointerPressed() = 1
-    hit1 = getSpriteHitTest(jug1, getPointerX(), getPointerY())
-    if hit1 > 0
+if getPointerPressed()=1
+    hit = getSpriteHitTest(jug1, getPointerX(), getPointerY())
+    if hit>0
         rem sprite picked up
-        picked1 = jug1
-        pX1 = getPointerX()
-        pY1 = getPointerY()
+        picked = jug1
+        pX = getPointerX()
+        pY = getPointerY()
     endif
 else
-    if picked1 > 0
-        if getPointerState() > 0
+    if picked>0
+        if getPointerState()>0
             rem Sprite being dragged
-            cX1 = getPointerX()
-            cY1 = getPointerY()
-            setSpritePosition(picked1,getSpriteX()+cX1-pX1,getSpriteY()+cY1-pY1)
-            pX1 = cX1
-            pY1 = cY1
+            cX = getPointerX()
+            cY = getPointerY()
+            setSpritePosition(picked,getSpriteX(jug1)+cX-pX,getSpriteY(jug1)+cY-pY)
+            pX = cX
+            pY = cY
         else
             rem Sprite Dropped
-            picked1 = 0
+            picked=0
         endif
     endif
-endif
+endif	
 
-
-if getPointerPressed() = 1
+if getPointerPressed()=1
     hit2 = getSpriteHitTest(jug2, getPointerX(), getPointerY())
     if hit2 > 0
         rem sprite picked up
@@ -65,12 +56,12 @@ if getPointerPressed() = 1
         pY2 = getPointerY()
     endif
 else
-    if picked2 > 0
-        if getPointerState() > 0
+    if picked2 >0
+        if getPointerState()>0
             rem Sprite being dragged
             cX2 = getPointerX()
             cY2 = getPointerY()
-            setSpritePosition(picked2,getSpriteX()+cX2-pX2,getSpriteY()+cY2-pY2)
+            setSpritePosition(picked2 ,getSpriteX(jug2)+cX2 - pX2 ,getSpriteY(jug2)+ cY2 - pY2)
             pX2 = cX2
             pY2 = cY2
         else
@@ -78,90 +69,16 @@ else
             picked2 = 0
         endif
     endif
-endif
+endif	
 
-//do Animation 
-if GetSpriteCollision(tap, jug1)
-	AddSpriteAnimationFrame ( 3, LoadImage ( "bigJug1.png" ) )
-	AddSpriteAnimationFrame ( 3, LoadImage ( "bigJug2.png" ) )
-	AddSpriteAnimationFrame ( 3, LoadImage ( "bigJug3.png" ) )
-	AddSpriteAnimationFrame ( 3, LoadImage ( "bigJug4.png" ) )
-	AddSpriteAnimationFrame ( 3, LoadImage ( "bigJug5.png" ) )
-endif
-
-if GetSpriteCollision(tap, jug2)
-	AddSpriteAnimationFrame ( 4, LoadImage ( "smallJug1.png" ) )
-	AddSpriteAnimationFrame ( 4, LoadImage ( "smallJug2.png" ) )
-	AddSpriteAnimationFrame ( 4, LoadImage ( "smallJug3.png" ) )
-	AddSpriteAnimationFrame ( 4, LoadImage ( "smallJug4.png" ) )
-	AddSpriteAnimationFrame ( 4, LoadImage ( "smallJug5.png" ) )
-endif
-
-if GetSpriteCollision(drop, jug1)
-	AddSpriteAnimationFrame ( 3, LoadImage ( "bigJug5.png" ) )
-	AddSpriteAnimationFrame ( 3, LoadImage ( "bigJug4.png" ) )
-	AddSpriteAnimationFrame ( 3, LoadImage ( "bigJug3.png" ) )
-	AddSpriteAnimationFrame ( 3, LoadImage ( "bigJug2.png" ) )
-	AddSpriteAnimationFrame ( 3, LoadImage ( "bigJug1.png" ) )
-endif
+ if ( GetPointerPressed ( ) = 1 )
+        x = GetPointerX ( )
+        y = GetPointerY ( )
 
 
-if GetSpriteCollision(drop, jug2)
-	AddSpriteAnimationFrame ( 3, LoadImage ( "smallJug5.png" ) )
-	AddSpriteAnimationFrame ( 3, LoadImage ( "smallJug4.png" ) )
-	AddSpriteAnimationFrame ( 3, LoadImage ( "smallJug3.png" ) )
-	AddSpriteAnimationFrame ( 3, LoadImage ( "smallJug2.png" ) )
-	AddSpriteAnimationFrame ( 3, LoadImage ( "smallJug1.png" ) )
-endif
-
-
-do 
-	Print("Get a 4 Litre Jug of Water")
-	Time = GetSeconds()
-	Print(Time)
-	Sync()
+        
+    endif
+Print(x)
+        Print(y)
+    Sync ( )
 loop
-
-// Logic To win the game 
-
-rem Fill the 5 Litre Jug 
-rem Empty It into the 3 Litre --- 2 Litre in the 5 Litre
-if GetSpriteCollision(jug1, jug2)
-	//bigJug
-	AddSpriteAnimationFrame ( 3, LoadImage ( "bigJug5.png" ) )
-	AddSpriteAnimationFrame ( 3, LoadImage ( "bigJug4.png" ) )
-	AddSpriteAnimationFrame ( 3, LoadImage ( "bigJug3.png" ) )
-
-	//smallJug
-	AddSpriteAnimationFrame ( 4, LoadImage ( "smallJug1.png" ) )
-	AddSpriteAnimationFrame ( 4, LoadImage ( "smallJug2.png" ) )
-endif
-
-rem Empty the 3 Litre Jug
-
-
-rem Pour 2 Litre into 3 Litre 
-if GetSpriteCollision(tap, jug1)
-	AddSpriteAnimationFrame ( 3, LoadImage ( "bigJug1.png" ) )
-	AddSpriteAnimationFrame ( 3, LoadImage ( "bigJug2.png" ) )
-	AddSpriteAnimationFrame ( 3, LoadImage ( "bigJug3.png" ) )
-	AddSpriteAnimationFrame ( 3, LoadImage ( "bigJug4.png" ) )
-	AddSpriteAnimationFrame ( 3, LoadImage ( "bigJug5.png" ) )
-endif
-
-
-rem fill up 5 Litre 
-
-rem Empty 5 Litre into the 3 Litre
-//tricky
-if 
-
-
-rem If The jug is 4 litres full print "You win message"
-
-
-if // 4 Litres 
-	win = CreateSprit(5, LoadImage("temp/win.jpg"))
-	SetSpritePosition(win, 300, 200)
-
-endif
