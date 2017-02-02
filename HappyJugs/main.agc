@@ -1,22 +1,24 @@
-// Project  Name: Happy Jugs
-// Created By: Padraig Connolly
-
  SetVirtualResolution ( 1334, 750 )
-   
-   
-   // background image
-    background = CreateSprite ( LoadImage ( "background.png" ) )
-    SetSpriteSize(background, 1334, 750)
 
+	background = CreateSprite ( LoadImage ( "background.png" ) )
+	SetSpriteSize(background, 1334, 750)
 
 	jug1 = CreateSprite (LoadImage ("tempJug_burned.png") )
-    SetSpriteSize(jug1, 200, 200)
-    SetSpritePosition( jug1, 325, 340)
+    SetSpriteSize(jug1, 150, 150)
+    
+    drop = CreateSprite (LoadImage ("drip.png") )
+    SetSpriteSize(drop, 15, 15)
+    SetSpritePosition( drop, 1080, 90)
+
 
 	jug2 = CreateSprite (LoadImage ("tempJug_burned.png") )
     SetSpriteSize(jug2, 100, 100)
-    SetSpritePosition( jug2, 525, 540)
-      
+    SetSpritePosition( jug2, 300, 200)
+    
+	drain = CreateSprite (LoadImage ("drain.png") )
+	SetSpriteSize(drain, 50, 50)
+	SetSpritePosition(drain, 50, 680)
+     
 do
 	/*
     Print ( "Touch or click the screen to move the" )
@@ -47,7 +49,43 @@ else
     endif
 endif	
 
-if getPointerPressed()=1
+if GetSpriteCollision ( jug1, drop ) = 1
+	
+		AddSpriteAnimationFrame ( jug1, LoadImage ( "tempJug_burned.png" ) )
+		AddSpriteAnimationFrame ( jug1, LoadImage ( "jug-1_burned.png" ) )
+		AddSpriteAnimationFrame ( jug1, LoadImage ( "jug-2_burned.png" ) )
+		AddSpriteAnimationFrame ( jug1, LoadImage ( "jug-3_burned.png" ) )
+		
+		PlaySprite ( jug1, 3, 0, 1, 4)
+		
+		
+endif
+
+if GetSpriteCollision( jug1, jug2) = 1
+			
+			AddSpriteAnimationFrame(jug1, LoadImage ("jug-2_burned.png"))
+			AddSpriteAnimationFrame(jug2, LoadImage ("jug-3_burned.png"))
+			
+			PlaySprite ( jug1, 3, 0, 1, 1)
+			PlaySprite ( jug2, 3, 0, 2, 2)
+			
+			
+			
+endif
+		
+if 	GetSpriteCollision ( jug1, drain ) = 1
+		
+
+			AddSpriteAnimationFrame ( jug1, LoadImage ( "tempJug_burned.png" ) )
+		
+			PlaySprite ( jug1, 3, 0, 1, 1)
+	endif
+		
+
+// have a seperate do loop for the second jug
+
+rem Do same for Jug 2 
+if getPointerPressed() = 1
     hit2 = getSpriteHitTest(jug2, getPointerX(), getPointerY())
     if hit2 > 0
         rem sprite picked up
@@ -56,12 +94,12 @@ if getPointerPressed()=1
         pY2 = getPointerY()
     endif
 else
-    if picked2 >0
+    if picked2 > 0
         if getPointerState()>0
             rem Sprite being dragged
             cX2 = getPointerX()
             cY2 = getPointerY()
-            setSpritePosition(picked2 ,getSpriteX(jug2)+cX2 - pX2 ,getSpriteY(jug2)+ cY2 - pY2)
+            setSpritePosition(picked2,getSpriteX(jug2)+cX2 - pX2 ,getSpriteY(jug2) + cY2 - pY2)
             pX2 = cX2
             pY2 = cY2
         else
@@ -71,14 +109,74 @@ else
     endif
 endif	
 
- if ( GetPointerPressed ( ) = 1 )
-        x = GetPointerX ( )
-        y = GetPointerY ( )
+if GetSpriteCollision ( jug2, drop ) = 1
+	
+		AddSpriteAnimationFrame ( jug2, LoadImage ( "tempJug_burned.png" ) )
+		AddSpriteAnimationFrame ( jug2, LoadImage ( "jug-1_burned.png" ) )
+		AddSpriteAnimationFrame ( jug2, LoadImage ( "jug-2_burned.png" ) )
+		AddSpriteAnimationFrame ( jug2, LoadImage ( "jug-3_burned.png" ) )
+		
+		PlaySprite ( jug2, 3, 0, 1, 4)
+
+endif
 
 
-        
-    endif
-Print(x)
-        Print(y)
-    Sync ( )
+if GetSpriteCollision( jug1, jug2) = 1
+			
+			AddSpriteAnimationFrame(jug1, LoadImage ("jug-2_burned.png"))
+			AddSpriteAnimationFrame(jug2, LoadImage ("jug-3_burned.png"))
+			
+			PlaySprite ( jug1, 3, 0, 1, 1)
+			PlaySprite ( jug2, 3, 0, 2, 2)
+			
+			
+			
+endif
+
+if 	GetSpriteCollision ( jug2, drain ) = 1
+		
+
+			AddSpriteAnimationFrame ( jug2, LoadImage ( "tempJug_burned.png" ) )
+		
+			PlaySprite ( jug2, 3, 0, 1, 1)
+	endif
+
+	Sync()
 loop
+
+/*
+do
+	if 	GetSpriteCollision ( jug1, drain ) = 1
+		
+			AddSpriteAnimationFrame ( jug1, LoadImage ( "jug-3_burned.png" ) )
+			AddSpriteAnimationFrame ( jug1, LoadImage ( "jug-2_burned.png" ) )
+			AddSpriteAnimationFrame ( jug1, LoadImage ( "jug-1_burned.png" ) )
+			AddSpriteAnimationFrame ( jug1, LoadImage ( "tempJug_burned.png" ) )
+		
+			PlaySprite ( jug1, 3, 0, 1, 4)
+	endif
+		
+	Sync()
+loop
+*/
+
+	
+
+/*
+do 
+	if GetSpriteCollision ( jug1, drop ) = 1
+		
+		AddSpriteAnimationFrame ( jug1, LoadImage ( "jug-1_burned.png" ) )
+		AddSpriteAnimationFrame ( jug1, LoadImage ( "jug-2_burned.png" ) )
+		AddSpriteAnimationFrame ( jug1, LoadImage ( "jug-3_burned.png" ) )
+
+
+	PlaySprite ( jug1)
+
+	endif
+	
+	Sync()
+loop
+
+*/
+
