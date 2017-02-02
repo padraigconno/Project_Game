@@ -1,12 +1,27 @@
-SetClearColor ( 0, 255, 0 )
+
+#include "test.agc"
+function CreateBackground( )
+    LoadImage ( 1, "map.png" )
+	CreateSprite ( 1, 1 )
+	FixSpriteToScreen ( 1, 1 )
+endfunction
+
+
+Begin ( )
+
+function Begin ( )
+    // load everything for the game
+    SetVirtualResolution ( 550, 400 )
+
+    CreateBackground      ( )
+endfunction
 
 input as String 
-input = "test"
+input = "13"
 
 StartTextInput ( )
-str1 as string = ""
+str1 as string = "What is the shortest length to all the dens?"
 
-Print(input)
 
 do
     if GetTextInputCompleted ( ) = 1 
@@ -16,11 +31,11 @@ do
 
     Print ( str1 )
 
-
+	if input = str1 
+	PRINT ("you win")
+	endif
+	if input <> str1
+	Print("Try again")
+	endif
     Sync ( )
-loop
-
-do
-	if str1 = input THEN PRINT ("you win")
-		Sync()
 loop

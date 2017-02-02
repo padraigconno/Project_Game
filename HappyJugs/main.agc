@@ -18,7 +18,16 @@
 	drain = CreateSprite (LoadImage ("drain.png") )
 	SetSpriteSize(drain, 50, 50)
 	SetSpritePosition(drain, 50, 680)
-     
+	/*
+	jug3 = CreateSprite (LoadImage ("jug-1_burned.png") )
+	SetSpriteVisible(jug3, 0)
+	
+	jug4 = CreateSprite (LoadImage ("jug-2_burned.png") )
+	SetSpriteVisible(jug4, 0)
+	
+	jug5 = CreateSprite (LoadImage ("jug-3_burned.png") )
+    SetSpriteVisible(jug5, 0)
+	 */
 do
 	/*
     Print ( "Touch or click the screen to move the" )
@@ -51,6 +60,8 @@ endif
 
 if GetSpriteCollision ( jug1, drop ) = 1
 	
+	//jug1 = LoadImage("jug-3_burned.png")
+	
 		AddSpriteAnimationFrame ( jug1, LoadImage ( "tempJug_burned.png" ) )
 		AddSpriteAnimationFrame ( jug1, LoadImage ( "jug-1_burned.png" ) )
 		AddSpriteAnimationFrame ( jug1, LoadImage ( "jug-2_burned.png" ) )
@@ -58,16 +69,15 @@ if GetSpriteCollision ( jug1, drop ) = 1
 		
 		PlaySprite ( jug1, 3, 0, 1, 4)
 		
-		
 endif
 
 if GetSpriteCollision( jug1, jug2) = 1
 			
-			AddSpriteAnimationFrame(jug1, LoadImage ("jug-2_burned.png"))
-			AddSpriteAnimationFrame(jug2, LoadImage ("jug-3_burned.png"))
+			AddSpriteAnimationFrame(jug2, LoadImage ("jug-3_burned.png")) 
+			AddSpriteAnimationFrame(jug1, LoadImage ("jug-1_burned.png"))
 			
-			PlaySprite ( jug1, 3, 0, 1, 1)
-			PlaySprite ( jug2, 3, 0, 2, 2)
+			PlaySprite ( jug2, 3, 0, 1, 1)
+			PlaySprite ( jug1, 3, 0, 2, 2)
 			
 			
 			
@@ -120,8 +130,8 @@ if GetSpriteCollision ( jug2, drop ) = 1
 
 endif
 
-
-if GetSpriteCollision( jug1, jug2) = 1
+/*
+if GetSpriteCollision( jug2, jug1) = 1
 			
 			AddSpriteAnimationFrame(jug1, LoadImage ("jug-2_burned.png"))
 			AddSpriteAnimationFrame(jug2, LoadImage ("jug-3_burned.png"))
@@ -132,8 +142,8 @@ if GetSpriteCollision( jug1, jug2) = 1
 			
 			
 endif
-
-if 	GetSpriteCollision ( jug2, drain ) = 1
+*/
+if 	GetSpriteCollision ( jug2, drain ) = 1  
 		
 
 			AddSpriteAnimationFrame ( jug2, LoadImage ( "tempJug_burned.png" ) )
@@ -141,6 +151,17 @@ if 	GetSpriteCollision ( jug2, drain ) = 1
 			PlaySprite ( jug2, 3, 0, 1, 1)
 	endif
 
+if 	GetSpriteCollision ( jug2, drain ) = 1  AND GetImageExists(1)
+		
+
+			AddSpriteAnimationFrame ( jug2, LoadImage ( "tempJug_burned.png" ) )
+		
+			PlaySprite ( jug2, 3, 0, 1, 1)
+	endif
+
+
+
+	
 	Sync()
 loop
 
