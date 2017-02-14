@@ -75,7 +75,7 @@ function SetupMainMenu ( )
 
 
     // text
-    g_Text [ 1 ] = CreateText ( "SMACK IT" )
+    g_Text [ 1 ] = CreateText ( "" )
         g_Text [ 2 ] = CreateText ( "START" )
         g_Text [ 3 ] = CreateText ( "" )
         g_Text [ 4 ] = CreateText ( "" )

@@ -44,8 +44,8 @@ FILE_0=main.agc;-1
 FILE_1=test.agc;-1
 
 [files]
-FILE_NAME_0=0;main.agc;115;0
-FILE_NAME_1=1;test.agc;146;1
+FILE_NAME_0=0;main.agc;93;0
+FILE_NAME_1=0;test.agc;109;1
 
 [project]
 description=
