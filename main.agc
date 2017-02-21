@@ -46,6 +46,7 @@ do
         case 3:
                 LoadLevel ( 0 )
                 endcase
+       
 
        endselect
 
@@ -54,6 +55,7 @@ loop
 
 
 function SetupMainMenu ( )
+	
         SetVirtualResolution ( 1334, 750 )
 
     // use a new font for the default text
@@ -178,14 +180,14 @@ function LoadLevel ( level as integer )
       option4 = CreateSprite (LoadImage ("game1/case4.png") )
       //SetSpriteSize(option1, 100, 100)
       SetSpritePosition( option4, 380, 690)
-      
-      
-     
+	
+
+    
 do
+
     Print ( "Click an option to win" )
     initialTime = GetSeconds ( )
     Print(initialTime)
-
 
     if ( GetSpriteHit ( GetPointerX ( ), GetPointerY ( ) ) = option3 AND GetPointerPressed ( ) = 1 )
         win = CreateSprite (LoadImage ("game1/win.jpeg") )
@@ -193,11 +195,39 @@ do
 		SetSpritePosition( win, 300, 200)
         //Print(str(GetPointerX ( )))
         //Print(str(GetPointerY ( )))
-    else 
-		initialTime = initialTime + 10
-    endif
+       test = initialTime 
+       Print(test)
+ 
+       	rem HTTP connection to the server so it can write file scores
+ 
+    fileID = OpenToWrite("test3.txt", 1)
+	WriteFloat(fileID, test )
+	CloseFile(fileID)
+	cid = CreateHTTPConnection()
+	SetHTTPHost(cid, "127.0.0.1" , 0)
 
-        
-    Sync ( )
-loop
+	SendHTTPFile(cid, "upload.php", "hey", "test3.txt")
+	//SetPrintSize(7)
+	
+	do
+			if GetHTTPResponseReady(cid) = 1
+				//Print (GetHTTPResponse(cid))
+				
+				else
+					Print( GetHTTPFileProgress(cid))			
+					endif
+				Sync()
+		loop
+				
+			CloseHTTPConnection(cid)
+			DeleteHTTPConnection(cid)
+			 
+			 
+       
+    endif
+    Sync()
+    loop
+    
+	
+
  endfunction
