@@ -46,6 +46,7 @@ do
         case 3:
                 LoadLevel ( 0 )
                 endcase
+       
 
        endselect
 
@@ -54,6 +55,7 @@ loop
 
 
 function SetupMainMenu ( )
+	
         SetVirtualResolution ( 1334, 750 )
 
     // use a new font for the default text
@@ -68,17 +70,18 @@ function SetupMainMenu ( )
     // foreground image
     foreground = CreateSprite ( LoadImage ( "main_menu/bebras.png" ) )
     SetSpritePosition ( foreground, 0, 250 )
-
+	SetSpriteSize(foreground, 300, 180) 
     // smack it logo
     logo = CreateSprite ( LoadImage ( "main_menu/bebras_logo.png" ) )
     SetSpritePosition ( logo, 69, 0 )
+    
 
 
     // text
-    g_Text [ 1 ] = CreateText ( "SMACK IT" )
-        g_Text [ 2 ] = CreateText ( "START" )
-        g_Text [ 3 ] = CreateText ( "" )
-        g_Text [ 4 ] = CreateText ( "" )
+    g_Text [ 1 ] = CreateText ( "" )
+        g_Text [ 2 ] = CreateText ( "STORY" )
+        g_Text [ 3 ] = CreateText ( "TOWERS" )
+        g_Text [ 4 ] = CreateText ( "PROFILE" )
         g_Text [ 5 ] = CreateText ( "" )
 
         for i = 1 to 5
@@ -89,8 +92,8 @@ function SetupMainMenu ( )
 
         SetTextPosition ( g_Text [ 1 ], 15.0, -230.0 )
         SetTextPosition ( g_Text [ 2 ], 90.0, 200.0 )
-        SetTextPosition ( g_Text [ 3 ], 70.0, 160.0 + ( space * 1 ) )
-        SetTextPosition ( g_Text [ 4 ], 30.0, 160.0 + ( space * 2 ) )
+        SetTextPosition ( g_Text [ 3 ], 480.0, 150.0 + ( space * 1 ) )
+        SetTextPosition ( g_Text [ 4 ], 880.0, 103.0 + ( space * 2 ) )
         SetTextPosition ( g_Text [ 5 ], 30.0, 160.0 + ( space * 3 ) )
 
 
@@ -178,26 +181,55 @@ function LoadLevel ( level as integer )
       option4 = CreateSprite (LoadImage ("game1/case4.png") )
       //SetSpriteSize(option1, 100, 100)
       SetSpritePosition( option4, 380, 690)
-      
-      
-     
+	
+
+    
 do
+
     Print ( "Click an option to win" )
     initialTime = GetSeconds ( )
     Print(initialTime)
-
-
+	
     if ( GetSpriteHit ( GetPointerX ( ), GetPointerY ( ) ) = option3 AND GetPointerPressed ( ) = 1 )
         win = CreateSprite (LoadImage ("game1/win.jpeg") )
 		//SetSpriteSize(win, 100, 100)
 		SetSpritePosition( win, 300, 200)
         //Print(str(GetPointerX ( )))
         //Print(str(GetPointerY ( )))
-    else 
-		initialTime = initialTime + 10
-    endif
+       test = initialTime 
+       Print(test)
+ 
+       	rem HTTP connection to the server so it can write file scores
+ 
+    fileID = OpenToWrite("test.csv", 0)
+    WriteLine(fileID, "score")
+    WriteLine(fileID, Str(initialTime))
+	CloseFile(fileID)
+	cid = CreateHTTPConnection()
+	SetHTTPHost(cid, "127.0.0.1" , 0)
 
-        
-    Sync ( )
-loop
+	SendHTTPFile(cid, "upload.php", "hey", "test.csv")
+	//SetPrintSize(7)
+	
+	do
+			if GetHTTPResponseReady(cid) = 1
+				//Print (GetHTTPResponse(cid))
+				
+				else
+					Print( GetHTTPFileProgress(cid))			
+					endif
+				Sync()
+		loop
+				
+			CloseHTTPConnection(cid)
+			DeleteHTTPConnection(cid)
+			 
+			 
+       
+    endif
+    Sync()
+    loop
+    
+	
+
  endfunction
