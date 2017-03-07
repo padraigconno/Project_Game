@@ -47,8 +47,12 @@ do
     Print ( "Click an option to win" )
     initialTime = GetSeconds ( )
     Print(initialTime)
-
-
+	test as integer
+	if(GetPointerPressed() = 1)
+		inc test, 1
+	Print(test)
+	endif 
+	
     if ( GetSpriteHit ( GetPointerX ( ), GetPointerY ( ) ) = option2 AND GetPointerPressed ( ) = 1 )
         win = CreateSprite (LoadImage ("game2/win.jpeg") )
 		//SetSpriteSize(win, 100, 100)

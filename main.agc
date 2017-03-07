@@ -71,6 +71,16 @@ function SetupMainMenu ( )
     foreground = CreateSprite ( LoadImage ( "main_menu/bebras.png" ) )
     SetSpritePosition ( foreground, 0, 250 )
 	SetSpriteSize(foreground, 300, 180) 
+    
+    /*
+    tower = CreateSprite ( LoadImage ( "main_menu/tower.png" ) )
+    SetSpritePosition ( tower, 0, 250 )
+	SetSpriteSize(tower, 480, 180) 
+    
+    profile = CreateSprite ( LoadImage ( "main_menu/profile.png" ) )
+    SetSpritePosition ( profile, 0, 250 )
+	SetSpriteSize(profile, 880, 180) 
+  */  
     // smack it logo
     logo = CreateSprite ( LoadImage ( "main_menu/bebras_logo.png" ) )
     SetSpritePosition ( logo, 69, 0 )
@@ -181,9 +191,7 @@ function LoadLevel ( level as integer )
       option4 = CreateSprite (LoadImage ("game1/case4.png") )
       //SetSpriteSize(option1, 100, 100)
       SetSpritePosition( option4, 380, 690)
-	
-
-    
+	    
 do
 
     Print ( "Click an option to win" )

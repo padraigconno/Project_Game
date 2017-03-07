@@ -43,13 +43,9 @@ output_path=
 FILE_0=main.agc;-1
 FILE_1=HappyJugs.agc;-1
 FILE_2=Cross-Country.agc;-1
-FILE_3=upload.agc;-1
-FILE_4=upload.php;-1
-FILE_5=media%2Fupload.php;-1
-FILE_6=media%2Fnew1.txt;-1
 
 [files]
-FILE_NAME_0=1;main.agc;1744;0
+FILE_NAME_0=0;main.agc;1912;0
 
 [project]
 description=
